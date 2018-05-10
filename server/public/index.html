@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,12 +11,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!--Scripts-->
     <script src="scripts/client.js"></script>
+    <script src="scripts/controllers/movies.controller.js"></script>
+    <script src="scripts/services/movies.services.js"></script>
     <!--Styles-->
     <link rel="stylesheet" href="styles/style.css">
     <title>Document</title>
 </head>
+
 <body ng-app="movieCollectionApp">
     <ng-include src="views/navigation.html"></ng-include>
     <ng-view></ng-view>
 </body>
+
 </html>
