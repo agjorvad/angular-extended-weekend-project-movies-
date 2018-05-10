@@ -12,6 +12,6 @@ app.config(function($routeProvider) {
     controller: 'GenresController as vm'
 })
 .otherwise({
-    templae: '<h2>404</h2>'
+    template: '<h2>404</h2>'
 });
 });

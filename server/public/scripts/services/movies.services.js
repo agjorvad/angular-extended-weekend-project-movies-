@@ -2,9 +2,25 @@ app.service('MoviesService', function ($http) {
     console.log('MoviesService is loaded');
     var self = this;
 
-self.newMovie= {name: '', genre: '', releaseDate: '', runTime: ''};
+self.newMovie= {name: '', genre: '', release_date: '', run_time: ''};
 
 self.movie = {list: [] };
+
+self.getAllMovies = function() {
+    $http({
+        method: 'GET',
+        url: '/movie'
+    })
+    .then(function (response) {
+        console.log(response);
+        self.movie.list = response.data;
+        console.log(self.movie.list);
+    })
+    .catch(function (error) {
+        console.log('error on /genre GET', error);
+    });
+    }
+    self.getAllMovies();
 
 self.addMovie = function () {
     console.log( 'button click is working');
@@ -15,25 +31,28 @@ self.addMovie = function () {
     })
     .then(function (response) {
         console.log('POST TO /movie successful');
+        self.getAllMovies();
     })
     .catch(function (error) {
         console.log('POST to /movie unsuccessful', error);
     })
-    self.getAllMovies();
 }
 
-self.getAllMovies = function() {
+self.deleteMovie = function (movie) {
+console.log(movie);
+    console.log('button click is working');
     $http({
-        method: 'GET',
-        url: '/genre'
+        method: 'DELETE',
+        url: '/movie',
+        params: movie
     })
-    .then(function (response) {
+    .then(function(response) {
         console.log(response);
-        self.movie.list = response.data;
+        self.getAllMovies();
     })
-    .catch(function (error) {
-        console.log('error on /genre GET', error);
-    });
-    }
-    self.getAllMovies();
+    .catch(function(error) {
+        console.log('error on /movie DELETE', error);
+    })
+}
+
 });
