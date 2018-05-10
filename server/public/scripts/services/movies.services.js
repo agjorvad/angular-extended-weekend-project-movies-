@@ -2,7 +2,10 @@ app.service('MoviesService', function ($http) {
     console.log('MoviesService is loaded');
     var self = this;
 
-self.newProperty= {name: '', genre: '', releaseDate: '', runTime: ''};
+self.newMovie= {name: '', genre: '', releaseDate: '', runTime: ''};
+
+self.movie = {list: [] };
+
 self.addMovie = function () {
     console.log( 'button click is working');
     $http({
