@@ -2,15 +2,19 @@
 <div>
     <form ng-submit="vm.addMovie()">
         <input type="text" ng-model="vm.newMovie.name" placeholder="Name" />
-        <select ng-model="vm.newMovie.genre">
+        <select ng-model="vm.newMovie.genre_id">
+        <option value="">---Please select---</option>
+        <option ng-repeat="genre in vm.genre.list" value="{{genre.id}}">{{genre.project}}</option>
+        <!-- <select ng-model="vm.newMovie.genre_id">
             <option value="" disabled selected>Genre</option>
-            <option value="Sci-Fi">Sci-Fi</option>
-            <option value="Horror">Horror</option>
-            <option value="Comedy">Comedy</option>
-            <option value="Action-Adventure">Action-Adventure</option>
-            <option value="Drama">Drama</option>
-            <option value="Documentary">Documentary</option>
-        </select>
+            <option value=+(1)>Sci-Fi</option>
+            <option value=>Horror</option>
+            <option value=3>Comedy</option>
+            <option value=4>Action-Adventure</option>
+            <option value=5>Drama</option>
+            <option value=6>Documentary</option>
+        </select> -->
+    </select>
         <input type="number" ng-model="vm.newMovie.release_date" placeholder="Release Date" />
         <input type="number" ng-model="vm.newMovie.run_time" placeholder="Run Time" />
         <input type="submit" value="Submit" />
@@ -27,7 +31,7 @@
         <!-- <img class="card-img-top" ng-src="" alt="Card image cap"> -->
         <ul class="list-group list-group-flush">
             <li class="list-group-item">{{movie.name}}</li>
-            <li class="list-group-item">{{movie.genre}}</li>
+            <li class="list-group-item">{{movie.project}}</li>
             <li class="list-group-item">{{movie.release_date}}</li>
             <li class="list-group-item">
                 <button class="btn btn-primary" ng-click="vm.deleteMovie(movie)">Delete</button>

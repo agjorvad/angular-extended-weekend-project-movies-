@@ -2,7 +2,7 @@ app.service('MoviesService', function ($http) {
     console.log('MoviesService is loaded');
     var self = this;
 
-self.newMovie= {name: '', genre: '', release_date: '', run_time: ''};
+self.newMovie= {name: '', release_date: '', run_time: '', genre_id: ''};
 
 self.movie = {list: [] };
 

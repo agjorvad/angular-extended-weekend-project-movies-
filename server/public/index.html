@@ -12,7 +12,9 @@
     <!--Scripts-->
     <script src="scripts/client.js"></script>
     <script src="scripts/controllers/movies.controller.js"></script>
+    <script src="scripts/controllers/genres.controller.js"></script>
     <script src="scripts/services/movies.services.js"></script>
+    <script src="scripts/services/genres.services.js"></script>
     <!--Styles-->
     <link rel="stylesheet" href="styles/bootstrap.css">
     <link rel="stylesheet" href="styles/style.css">
@@ -20,6 +22,7 @@
 </head>
 
 <body ng-app="movieCollectionApp">
+    <h2>Movie Collection App</h2>
     <ng-include src="views/navigation.html"></ng-include>
     <ng-view></ng-view>
 </body>
