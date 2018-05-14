@@ -11,6 +11,7 @@ app.controller("MoviesController", ['MoviesService', 'GenresService', '$http', f
     self.newGenre = GenresService.newGenre;
     self.genre = GenresService.genre;
     self.getAllGenres = GenresService.getAllGenres;
+    self.getImage = MoviesService.getImage;
     self.getAllMovies();
     self.getAllGenres();
     

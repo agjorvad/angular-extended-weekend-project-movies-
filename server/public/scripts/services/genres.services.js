@@ -40,6 +40,7 @@ app.service('GenresService', function ($http) {
     self.deleteGenre = function (genre) {
         console.log(genre);
         console.log('button click is working');
+        if (genre.total_count == 0) {
         $http({
             method: 'DELETE',
             url: '/genre',
@@ -52,5 +53,8 @@ app.service('GenresService', function ($http) {
             .catch(function (error) {
                 console.log('error on /genre DELETE', error);
             })
+        }else {
+            alert('Genre contains movies and cannot be deleted');
+        }
     }
 });

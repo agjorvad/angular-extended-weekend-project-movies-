@@ -2,7 +2,15 @@ app.service('MoviesService', function ($http) {
     console.log('MoviesService is loaded');
     var self = this;
 
-    self.newMovie = { name: '', release_date: 'L', run_time: '', genre_id: '', image_path: '' };
+    self.newMovie = { name: '', release_date: '', run_time: '', genre_id: '', image_path: '' };
+
+    self.defaultInput = function() {
+        self.newMovie.name = '';
+        self.newMovie.release_date = '';
+        self.newMovie.run_time = '';
+        self.newMovie.genre_id = '';
+        self.newMovie.image_path = '';
+    }
 
     self.movie = { list: [] };
 
@@ -33,6 +41,7 @@ app.service('MoviesService', function ($http) {
             .then(function (response) {
                 console.log('POST TO /movie successful');
                 self.getAllMovies();
+                self.defaultInput();
             })
             .catch(function (error) {
                 console.log('POST to /movie unsuccessful', error);
@@ -56,6 +65,27 @@ app.service('MoviesService', function ($http) {
             })
     }
 
+    self.getImage = function() {
+        console.log('Fetching poster url from TMDB');
+        var baseUrl = 'https://image.tmdb.org/t/p/w342';
+        $http({
+            method: 'GET',
+            url: 'https://api.themoviedb.org/3/search/movie',
+            params: {
+                api_key: 'fbf4a09366b50b45f96c80737b700f7f',
+                query: self.newMovie.name,
+            }
+        })
+        .then(function(response) {
+            var posterPath = response.data.results[0].poster_path;
+            var posterUrl = baseUrl + posterPath;
+            self.newMovie.image_path = posterUrl;
+            self.addMovie();
+        })
+        .catch(function(error) {
+            console.log('Error with TMDB search: ', error);
+        })
+    }
     // self.saveImage = function (image_path) {
     //     console.log('button click is working');
     //     $http({
