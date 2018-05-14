@@ -2,9 +2,12 @@ app.service('MoviesService', function ($http) {
     console.log('MoviesService is loaded');
     var self = this;
 
-self.newMovie= {name: '', release_date: '', run_time: '', genre_id: ''};
+self.newMovie= {name: '', release_date: '', run_time: '', genre_id: '', image_path: ''};
 
 self.movie = {list: [] };
+
+// self.src = {url: ''};
+
 
 self.getAllMovies = function() {
     $http({
@@ -24,6 +27,7 @@ self.getAllMovies = function() {
 
 self.addMovie = function () {
     console.log( 'button click is working');
+    console.log(self.newMovie);
     $http({
         method: 'POST',
         url: '/movie',
@@ -55,4 +59,22 @@ console.log(movie);
     })
 }
 
+// self.saveImage = function (image_path) {
+//     console.log('button click is working');
+//     $http({
+//         method: 'GET',
+//         url: 'https://api.themoviedb.org/3/search/movie?api_key=fbf4a09366b50b45f96c80737b700f7f&language=en-US&query=field%20of%20dreams&page=1&include_adult=false',
+//             // api_key: 'fbf4a09366b50b45f96c80737b700f7f',
+//             // q: image
+//         })
+//         .then(function (response) {
+//             console.log('response from GIPHY people', response.data.data[0].images.downsized.url);
+//             self.src.url= response.data.data[0].images.downsized.url;
+//         })
+//         .catch(function (error) {
+//             console.log('The force was not with us', error);
+//         })
+//     }
 });
+
+// , image_path: ''

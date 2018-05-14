@@ -5,10 +5,11 @@ const pool = require('../modules/pool');
 router.post('/', (req, res) => {
     console.log(req.body);
     let movie = req.body;
-    pool.query(`INSERT INTO "movies" ("name", "release_date", "run_time", "genre_id")
-    VALUES($1, $2, $3, $4);`, [movie.name, movie.release_date, movie.run_time, movie.genre_id])
+    pool.query(`INSERT INTO "movies" ("name", "release_date", "run_time", "genre_id", "image_path")
+    VALUES($1, $2, $3, $4, $5);`, [movie.name, movie.release_date, movie.run_time, movie.genre_id, movie.image_path])
     .then((results) => {
         res.sendStatus(201);
+        console.log(results);
     })
     .catch((error) => {
         ('error with POST', error);
@@ -22,6 +23,7 @@ router.get('/', (req, res) => {
     JOIN "movies" ON "movies"."genre_id" = "genres"."id"
     GROUP BY "genres"."project", "movies"."id";`)
     .then((results) => {
+        console.log(results.rows);
 res.send(results.rows);
     })
     .catch((error) => {
@@ -44,3 +46,6 @@ router.delete('/', (req, res) => {
 })
 
 module.exports = router;
+
+// "image_path"
+// , movie.image_path
