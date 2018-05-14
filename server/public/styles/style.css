@@ -7,6 +7,20 @@
     border-width: 1px;
 }
 
+/* a {
+    display: flex;
+    justify-content: space-around;
+    color: white;
+    text-align: center;
+    padding: 20px 16px;
+    text-decoration: none;
+} */
+
+a:hover {
+    background-color: grey;
+    color: white;
+}
+
 /* .nav li {
     display: inline-block;
     padding-left: 20px;
